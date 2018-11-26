@@ -215,35 +215,35 @@ class RCKmod:
 #
 # The model needs to be solved in order to find the consumption rule or 'saddle path'.
 
-# %% {"code_folding": [0]}
+# %% {"code_folding": []}
 # Create and solve model
-model = RCKmod(rho = 2,alpha = 0.3,theta = 0.02,xi = 0.01,delta = 0.08,phi = 0.03)
-model.solve()
+RCKmodExample = RCKmod(rho = 2,alpha = 0.3,theta = 0.02,xi = 0.01,delta = 0.08,phi = 0.03)
+RCKmodExample.solve()
 
 # Test the consumption rule
-print('Consumption at k = %1.2f is c = %1.2f' % (model.kss/2, model.cFunc(model.kss/2)))
+print('Consumption at k = %1.2f is c = %1.2f' % (RCKmodExample.kss/2, RCKmodExample.cFunc(RCKmodExample.kss/2)))
 
 # %% [markdown]
 # The model's phase diagram can then be generated.
 
 # %%
-model.phase_diagram(arrows= True, n_arrows = 12)
+RCKmodExample.phase_diagram(arrows= True, n_arrows = 12)
 
 # %% [markdown]
 # The class can also be used to simulate the dynamics of capital given a starting point.
 
-# %% {"code_folding": [0]}
+# %% {"code_folding": []}
 # Create grid of time points
 t = np.linspace(0,100,100)
 
 # Find capital dynamics at the desired time points and with
 # a given starting capital
 k0 = 4
-k = model.k_dynamics(k0,t)
+k = RCKmodExample.k_dynamics(k0,t)
 
 # Plot
 plt.plot(t,k)
-plt.axhline(y = model.kss,linestyle = '--',color = 'k', label = '$\\bar{k}$')
+plt.axhline(y = RCKmodExample.kss,linestyle = '--',color = 'k', label = '$\\bar{k}$')
 plt.title('Capital')
 plt.xlabel('Time')
 plt.legend()
@@ -252,13 +252,13 @@ plt.show()
 # %% [markdown]
 # With capital, the consumption rule can be used to find the dynamics of consumption.
 
-# %% {"code_folding": [0]}
+# %% {"code_folding": []}
 # Find consumption
-c = model.cFunc(k)
+c = RCKmodExample.cFunc(k)
 
 # Plot
 plt.plot(t,c)
-plt.axhline(y = model.css,linestyle = '--',color = 'k', label = '$\\bar{c}$')
+plt.axhline(y = RCKmodExample.css,linestyle = '--',color = 'k', label = '$\\bar{c}$')
 plt.title('Consumption')
 plt.xlabel('Time')
 plt.legend()
