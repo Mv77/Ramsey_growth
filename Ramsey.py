@@ -44,7 +44,7 @@
 # A formal treatment of the exact version of the model implemented in this notebook can be found in [Christopher D. Carroll's graduate macroeconomics lecture notes](http://www.econ2.jhu.edu/people/ccarroll/public/LectureNotes/Growth/RamseyCassKoopmans/).
 #
 
-# %% {"code_folding": [0]}
+# %% {"code_folding": []}
 # Preamble
 import numpy as np
 import matplotlib.pyplot as plt
@@ -52,7 +52,7 @@ import matplotlib.pyplot as plt
 from scipy.integrate import odeint
 from scipy import interpolate
 
-# %% {"code_folding": [0]}
+# %% {"code_folding": []}
 # Class implementation
 
 class RCKmod:
@@ -61,7 +61,15 @@ class RCKmod:
     """
     
     def __init__(self,rho,alpha,theta,xi,delta,phi):
-        
+        """
+        Inputs:
+        - rho:   relative risk aversion coefficient for CRRA utility.
+        - alpha: capital's share of production in Cobb-Douglas output function.
+        - theta: time preference/discount rate.
+        - xi:    population growth rate.
+        - delta: capital depreciation rate.
+        - phi:   labor productivity growth rate.        
+        """
         # Assign parameter values
         self.rho = rho
         self.alpha = alpha
